@@ -25,17 +25,22 @@ else {
 
 $signup = isset($_GET['signup']);
 $error = isset($_GET['error']);
+
+$action = $signup ? 'create_user.php' : 'validate_user.php';
+$action .= isset($_GET['target'])? $_GET['target']:'';
+
+$logtype = $signup ? 'Sign Up' : 'Log In';
 		?>
 	</nav>
 	<div>
-		<h2><?= $signup ? 'Sign Up' : 'Log In' ?></h2>
-		<form action="<?= $signup ? 'create_user.php' : 'validate_user.php' ?>" method="POST">
+		<h2><?= $logtype ?></h2>
+		<form action="<?= $action ?>" method="POST">
 			<?= $error ? '<p>Username already exists</p>' : ?>
 			<label for="uname">Username</label>
 			<input type="text" id="uname" name="uname" required /><br />
 			<label for="pass">Password</label>
 			<input type="password" id="pass" name="pass" required />
-			<button type="submit"><?= $signup ? 'Sign Up' : 'Log In' ?></button>
+			<button type="submit"><?= $logtype ?></button>
 		</form>
 	</div>
 
