@@ -11,7 +11,7 @@ $passwords = fopen('/srv/file-share/passwords.txt', 'a');
 
 while(!feof($users)) {
 	if ($username == trim(fgets($users)))
-		header("Location: login.php?signup&error".(($target == '.')?:$target);
+		header("Location: login.php?signup&error".(($target == '.')?:'&'.$target));
 }
 
 fwrite($users, $username."\n");
