@@ -21,12 +21,16 @@ if (!isset($_SESSION['user']))
 else {
 	echo '<a href="logout.php">Log Out</a>'."\n";
 }
-
-$username = $_SESSION['user'];
 		?>
 	</nav>
 	<div>
 		<h2>Upload File</h2>
+		<form enctype="multipart/form-data" action="file_upload_backend.php" method="POST">
+			<input type="hidden" name="MAX_FILE_SIZE" value="20000000" />
+			<label for="fileinput">Choose file:</label>
+			<input name="upfile" type="file" id="fileinput" />
+			<button type="submit">Upload File</button>
+		</form>
 	</div>
 </body>
 
