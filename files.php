@@ -37,7 +37,7 @@ function list_files($uname) {
 	$files = array_diff(scandir("/srv/file-share/{$uname}"), array('..', '.'));
 
 	foreach ($files as $file) {
-		printf('<li><a href="file_display.php?file=%s" target="_blank">%s</a><a href="file_download.php?file=%s">Download</a><a href="file_delete.php?file=%s">Delete</a></li>'."\n",
+		printf('<li><a href="file_display.php?file=%s" target="_blank">%s</a><a href="file_download.php?file=%s" target="_blank">Download</a><a href="file_delete.php?file=%s">Delete</a></li>'."\n",
 			$file, $file, $file, $file);
 	}
 }
