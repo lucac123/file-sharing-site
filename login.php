@@ -19,8 +19,8 @@ session_start();
 if (isset($_SESSION['user']))
 	header("Location: .");
 else {
-	echo '<a href="login.php?signup">Sign Up</a>'."\n";
-	echo '<a href="login.php">Log In</a>';
+	echo '<a href="login.php?signup">Sign Up</a>'."\n\t\t";
+	echo '<a href="login.php">Log In</a>'."\n";
 }
 
 $signup = isset($_GET['signup']);
@@ -37,11 +37,11 @@ $logtype = $signup ? 'Sign Up' : 'Log In';
 	<div>
 		<h2><?= $logtype ?></h2>
 		<form action="<?= $action ?>" method="POST">
-			<?= $ue_error ? '<p>Username already exists</p>' : ''?>
-			<?= $une_error ? '<p>Username doesn\'t exist</p>' : ''?>
+			<?= $ue_error ? '<p>Username already exists</p>'."\n" : ''?>
+			<?= $une_error ? '<p>Username doesn\'t exist</p>'."\n" : ''?>
 			<label for="uname">Username</label>
 			<input type="text" id="uname" name="uname" required /><br />
-			<?= $p_error ? '<p>Incorrect Password</p>' : ''?>
+			<?= $p_error ? '<p>Incorrect Password</p>'."\n" : ''?>
 			<label for="pass">Password</label>
 			<input type="password" id="pass" name="pass" required />
 			<button type="submit"><?= $logtype ?></button>
