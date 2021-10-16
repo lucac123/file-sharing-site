@@ -35,7 +35,7 @@ $logtype = $signup ? 'Sign Up' : 'Log In';
 	<div>
 		<h2><?= $logtype ?></h2>
 		<form action="<?= $action ?>" method="POST">
-			<?= $error ? '<p>Username already exists</p>' : ?>
+			<?= $error ? '<p>Username already exists</p>' : ''?>
 			<label for="uname">Username</label>
 			<input type="text" id="uname" name="uname" required /><br />
 			<label for="pass">Password</label>
