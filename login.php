@@ -12,38 +12,28 @@
 		<h1><span>FileShare</span> - Free Online File-Hosting Service</h1>
 	</header>
 	<nav>
-		<a href="fileshare.php">Home</a>
+		<a href=".">Home</a>
 		<a href="files.php">Files</a>
 		<?php
 session_start();
 if (isset($_SESSION['user']))
 	header("Location: fileshare.php");
 else {
-	echo '<a href="login.php?signup">Sign Up</a>';
+	echo '<a href="login.php?signup">Sign Up</a>'."\n";
 	echo '<a href="login.php">Log In</a>';
 }
+
+$signup = (isset($_GET['signup']))? true : false;
 		?>
 	</nav>
 	<div>
-		<h2><?php (isset($_GET['signup'])? echo 'Sign Up' : echo 'Log In') ?></h2>
-		<?php
-		if (isset($_GET['signup']))
-			printf('\t\t<form action="create_user.php" method="POST">');
-		else
-			printf('\t\t<form action="validate_user.php" method="POST">');
-		?>
+		<h2><?= $signup ? 'Sign Up' : 'Log In' ?></h2>
+		<form action="<?= $signup ? 'create_user.php' : 'validate_user.php' ?>" method="POST">
 			<label for="uname">Username</label>
-			<input type="text" id="uname" name="uname" />
+			<input type="text" id="uname" name="uname" /><br/>
 			<label for="pass">Password</label>
 			<input type="password" id="pass" name="pass" />
-
-			<?php
-		if (isset($_GET['signup']))
-			printf('\t\t\t<button type="submit" value="Sign Up"/>');
-		else
-			printf('\t\t\t<button type="submit" value="Log In"/>');
-		?>
-		
+			<button type="submit"><?= $signup ? 'Sign Up' : 'Log In' ?></button>
 		</form>
 	</div>
 
