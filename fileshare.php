@@ -25,6 +25,10 @@ else {
 		?>
 	</nav>
 	<div>
+		<?php
+		if (isset($_SESSION['user']))
+			echo "<h2>Welcome {$_SESSION['user']}!</h2>\n";
+		?>
 		<a href="files.php">Upload or View Files</a>
 	</div>
 
