@@ -29,6 +29,8 @@ else {
 	fwrite($passwords, hash('sha256', $password)."\n");
 	fclose($passwords);
 
+	mkdir("/srv/file-share/{$username}");
+
 	header("Location: {$target}");
 }
 ?>
