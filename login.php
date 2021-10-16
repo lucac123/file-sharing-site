@@ -23,16 +23,18 @@ else {
 	echo '<a href="login.php">Log In</a>';
 }
 
-$signup = (isset($_GET['signup']))? true : false;
+$signup = isset($_GET['signup']);
+$error = isset($_GET['error']);
 		?>
 	</nav>
 	<div>
 		<h2><?= $signup ? 'Sign Up' : 'Log In' ?></h2>
 		<form action="<?= $signup ? 'create_user.php' : 'validate_user.php' ?>" method="POST">
+			<?= $error ? '<p>Username already exists</p>' : ?>
 			<label for="uname">Username</label>
-			<input type="text" id="uname" name="uname" /><br/>
+			<input type="text" id="uname" name="uname" required /><br />
 			<label for="pass">Password</label>
-			<input type="password" id="pass" name="pass" />
+			<input type="password" id="pass" name="pass" required />
 			<button type="submit"><?= $signup ? 'Sign Up' : 'Log In' ?></button>
 		</form>
 	</div>
