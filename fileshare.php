@@ -18,13 +18,15 @@
 session_start();
 if (isset($_SESSION['user']))
 	echo '<a href="logout.php">Logout</a>';
-else
+else {
+	echo '<a href="login.php?signup">Sign Up</a>';
 	echo '<a href="login.php">Login</a>';
+}
 		?>
 	</nav>
-	<section>
+	<div>
 		<a href="files.php">Upload or View Files</a>
-	</section>
+	</div>
 
 </body>
 
