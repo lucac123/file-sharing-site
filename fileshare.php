@@ -17,10 +17,10 @@
 		<?php
 session_start();
 if (isset($_SESSION['user']))
-	echo '<a href="logout.php">Logout</a>';
+	echo '<a href="logout.php">Log Out</a>';
 else {
 	echo '<a href="login.php?signup">Sign Up</a>';
-	echo '<a href="login.php">Login</a>';
+	echo '<a href="login.php">Log In</a>';
 }
 		?>
 	</nav>
