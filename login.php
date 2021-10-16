@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>FileShare</title>
+	<title>FileShare | Login</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" type="text/css" href="fileshare.css" />
 </head>
@@ -29,7 +29,7 @@ $une_error = isset($_GET['une_error']);
 $p_error = isset($_GET['p_error']);
 
 $action = $signup ? 'create_user.php' : 'validate_user.php';
-$action .= isset($_GET['target'])? $_GET['target']:'';
+$action .= isset($_GET['target'])? '?target='.$_GET['target']:'';
 
 $logtype = $signup ? 'Sign Up' : 'Log In';
 		?>
