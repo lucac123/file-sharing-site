@@ -8,6 +8,8 @@ if (!isset($_GET['file']) || !isset($_SESSION['user'])) {
 
 $filename = $_GET['file'];
 
+
+
 if (!unlink('/srv/file-share/'.$_SESSION['user'].'/'.$filename)) {
 	echo 'Error - Could not Delete file';
 	exit;

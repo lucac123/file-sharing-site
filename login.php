@@ -23,13 +23,26 @@ else {
 	echo '<a href="login.php">Log In</a>'."\n";
 }
 
+/* Errors:
+* ui_error	-	Invalid Username
+* ue_error	-	Username Already Exists
+* un_error	-	Username Doesn't Exist
+* pi_error	-	Invalid Password
+* pn_error	-	Password Incorrect
+*/
+
 $signup = isset($_GET['signup']);
+
+$ui_error = isset($_GET['ui_error']);
 $ue_error = isset($_GET['ue_error']);
-$une_error = isset($_GET['une_error']);
-$p_error = isset($_GET['p_error']);
+$un_error = isset($_GET['un_error']);
+$pi_error = isset($_GET['pi_error']);
+$pn_error = isset($_GET['pn_error']);
 
 $action = $signup ? 'create_user.php' : 'validate_user.php';
-$action .= isset($_GET['target'])? '?target='.$_GET['target']:'';
+
+if (isset($_GET['target']))
+	$action .= '?target='.$_GET['target'];
 
 $logtype = $signup ? 'Sign Up' : 'Log In';
 		?>
@@ -37,11 +50,13 @@ $logtype = $signup ? 'Sign Up' : 'Log In';
 	<div>
 		<h2><?= $logtype ?></h2>
 		<form action="<?= $action ?>" method="POST">
-			<?= $ue_error ? '<p>Username already exists</p>'."\n" : ''?>
-			<?= $une_error ? '<p>Username doesn\'t exist</p>'."\n" : ''?>
+			<?= $ui_error ? "<p>Username invalid. Only use letters and numbers</p>\n" : ''?>
+			<?= $ue_error ? "<p>Username taken. Please choose another</p>\n" : ''?>
+			<?= $un_error ? "<p>Username not found</p>\n" : ''?>
 			<label for="uname">Username</label>
 			<input type="text" id="uname" name="uname" required /><br />
-			<?= $p_error ? '<p>Incorrect Password</p>'."\n" : ''?>
+			<?= $pi_error ? "<p>Invalid Password. Only use letters, numbers, and symbols *, @, #, $, ^</p>\n" : ''?>
+			<?= $pn_error ? "<p>Incorrect Password</p>\n" : ''?>
 			<label for="pass">Password</label>
 			<input type="password" id="pass" name="pass" required />
 			<button type="submit"><?= $logtype ?></button>

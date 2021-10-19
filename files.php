@@ -16,8 +16,9 @@
 		<a href="files.php">Files</a>
 		<?php
 session_start();
-if (!isset($_SESSION['user']))
+if (!isset($_SESSION['user'])) {
 	header("Location: login.php?target=files.php");
+}
 else {
 	echo '<a href="logout.php">Log Out</a>'."\n";
 }
