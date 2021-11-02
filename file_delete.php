@@ -15,5 +15,5 @@ if (!unlink('/srv/file-share/'.$_SESSION['user'].'/'.$filename)) {
 	exit;
 }
 else
-	header("Location: files.php");
+	header("Location: home.php");
 ?>

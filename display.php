@@ -11,9 +11,7 @@ $username = $_SESSION['user'];
 
 $path = '/srv/file-share/'.$username.'/'.$filename;
 
-$finfo = new finfo(FILEINFO_MIME_TYPE);
-$mime = $finfo->file($path);
-
+$mime = mime_content_type($path);
 
 header("Content-Type: ".$mime);
 header("content-disposition: inline; filename=\"".$filename."\";");

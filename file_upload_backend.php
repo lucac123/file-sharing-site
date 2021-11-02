@@ -7,5 +7,5 @@ $username = $_SESSION['user'];
 
 move_uploaded_file($_FILES['upfile']['tmp_name'], "/srv/file-share/{$username}/{$filename}");
 
-header("Location: files.php");
+header("Location: home.php");
 ?>

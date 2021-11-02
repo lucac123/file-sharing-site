@@ -1,0 +1,271 @@
+body {
+	font-family: raleway, sans-serif;
+	font-weight: 400;
+	margin: 0;
+}
+
+header#nav-bar {
+	margin: 10px 18px;
+	height: 100px;
+}
+
+a {
+	text-decoration: none;
+}
+
+img#logo {
+	float: left;
+	width: 100px;
+}
+
+p#title {
+	float: left;
+	font-size: 55pt;
+	font-weight: 600;
+	letter-spacing: 0.3pt;
+	color: #3B405A;
+	margin: 7px 20px;
+}
+
+#buttons {
+	float: right;
+	margin: 35px;
+}
+
+.button {
+	font-family: raleway, sans-serif;
+	border-color: #3B405A;
+	padding: 10px;
+	margin: 2px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 13px;
+	font-size: 20pt;
+}
+
+.button-dark {
+	background-color: #3B405A;
+	color: white;
+}
+.button-dark:hover {
+	background-color: #31354b;
+}
+
+.button-light {
+	background-color: white;
+	color: #3B405A;
+}
+
+.button-light:hover {
+	background-color: #ecf5f5;
+}
+
+#welcome-content {
+	position: relative;
+	top: 150px;
+	margin-left: 150px;
+}
+
+.big-caption {
+	font-size: 45pt;
+}
+
+.mid-caption {
+    font-size: 30pt;
+}
+
+.big-button {
+    border-color: #3B405A;
+    padding: 10px 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 17px;
+    font-size: 25pt;
+    background-color: #3b405a;
+    color: white;
+    position: relative;
+    top: 50px;
+}
+
+.big-button:hover {
+	background-color: #31354b;
+}
+
+.content-box {
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 13px;
+	width: 400px;
+	margin: auto;
+	position: relative;
+	top: 150px;
+}
+
+#log-title {
+    text-align: center;
+    margin: 25px auto;
+}
+
+.log-label {
+    margin: auto 38px;
+    font-size: 15pt;
+}
+
+.text-box {
+	border-color: #31354b;
+	border-width: 2px;
+	border-radius: 13px;
+	width: 340px;
+	height: 50px;
+	margin: auto 24.5px 20px 24.5px;
+	font-size: 13pt;
+	font-family: raleway, sans-serif;
+	padding-left: 5px;
+}
+
+.form-submit {
+    width: 150px;
+    margin-left: 125px;
+    margin-bottom: 25px;
+}
+
+.error-text {
+    position: relative;
+    top: -20px;
+    left: 38px;
+    font-size: 10pt;
+    color: red;
+}
+
+#upload-title {
+    text-align: center;
+    margin: 25px auto;	
+}
+
+#upload-submit {
+    width: 200px;
+    margin-left: 100px;
+    margin-bottom: 25px;
+}
+
+input[type="file"]::file-selector-button {
+	display: none;
+
+}
+
+#fileinput {
+	margin: 15px 121px;
+	font-family: raleway, sans-serif;
+	font-size: 10pt;
+}
+
+#file-upload {
+	margin-left: 121px;
+}
+
+
+#home-content {
+	border-top-style: solid;
+	width: 100%;
+	border-width: 1px;
+	border-color: #3B405A;
+	padding: 40px 18px 20px 0;
+	position: relative;
+}
+
+#file-ops {
+	float: left;
+	width: 200px;
+}
+
+img#plus {
+	width: 35px;
+	float: left;
+	margin-right: 13px;
+}
+
+p#upload {
+	margin: 3.5px 0 7.5px 0;
+	font-size: 18pt;
+	color: #3B405A;
+	display: inline-block;
+}
+
+#upload-button {
+	height: 35px;
+	border-style: solid;
+	border-radius: 30px;
+	border-width: 1px;
+	border-color: #3B405A;
+	width: 140px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+#upload-button:hover {
+	background-color: #ecf5f5;
+}
+
+.small-icon {
+	width: 23px;
+}
+
+#download-button {
+	float: left;
+	margin: 20px 0 0 40px;
+}
+
+#delete-button {
+	float: right;
+	margin: 20px 40px 0 0;
+}
+
+#file-list {
+	overflow: hidden;
+}
+
+table {
+	border-collapse: collapse;
+	width: 95%;
+}
+
+.table-header {
+	font-size: 16pt;
+	padding-bottom: 15px;
+}
+
+#header-row {
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #3B405A;
+}
+
+#selected-row {
+	background-color: #ecf5f5;
+}
+
+.file-row {
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: #3B405A;
+}
+
+.file-name {
+	padding: 15px;
+	width: 40%;
+}
+
+.file-data {
+	width: 20%;
+}
+
+.file-icon {
+	width: 60px;
+	vertical-align: middle;
+}
+
+.file-link {
+	color: black;
+	padding-left: 15px;
+	font-size: 18px;
+}
