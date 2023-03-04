@@ -7,19 +7,20 @@ if (!isset($_GET['file']) || !isset($_SESSION['user'])) {
 }
 
 $filename = $_GET['file'];
-$user = $_SESSION['user'];
+$file_home = $_SERVER['file_home'];
+$username = $_SESSION['user'];
 
-if (file_exists('/srv/file-share/'.$user.'/'.$filename)) {
+if (file_exists("$file_home/$username/$filename")) {
 	header('Content-Description: File Transfer');
 	header('Content-Type: application/octet-stream');
 	header('Cache-Control: no-cache, must-revalidate');
 	header('Expires: 0');
 	header('Content-Disposition: attachment; filename="'.$filename.'"');
-	header('Content-Length: '.filesize('/srv/file-share/'.$user.'/'.$filename));
+	header('Content-Length: '.filesize("$file_home/$username/$filename"));
 	header('Pragma: public');
 
 	flush();
-	readfile('/srv/file-share/'.$user.'/'.$filename);
+	readfile("$file_home/$username/$filename");
 	exit;
 }
 else {

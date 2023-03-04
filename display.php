@@ -7,9 +7,10 @@ if (!isset($_GET['file']) || !isset($_SESSION['user'])) {
 }
 
 $filename = $_GET['file'];
+$file_home = $_SERVER['file_home'];
 $username = $_SESSION['user'];
 
-$path = '/srv/file-share/'.$username.'/'.$filename;
+$path = "$file_home/$username/$filename";
 
 $mime = mime_content_type($path);
 

@@ -5,6 +5,8 @@ session_start();
 
 $username = NULL;
 
+$file_home = $_SERVER['file_home'];
+
 if (!isset($_SESSION['user']))
 	header("Location: login.php");
 else
@@ -37,8 +39,9 @@ function format_size($size) {
 
 function list_files($uname) {
 	global $selected;
+	global $file_home;
 
-	$path = "/srv/file-share/${uname}/";
+	$path = "$file_home/$uname/";
 	$files = array_diff(scandir($path), array('..', '.'));
 
 	foreach ($files as $file) {

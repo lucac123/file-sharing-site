@@ -1,68 +1,69 @@
 <?php
-/* Errors:
-* ui_error - Invalid Username
-* pi_error - Invalid Password
-* un_error	-	Username Doesn't Exist
-* pn_error	-	Password Incorrect
-*/
-
 session_start();
 
-$target = isset($_GET['target'])? $_GET['target'] : '.';
-$get_target = isset($_GET['target'])? '&'.$_GET['target'] : '';
+$sql = new stdClass();
+$sql->servername = $_SERVER['sql_server'];
+$sql->user = $_SERVER['sql_user'];
+$sql->pass = $_SERVER['sql_pass'];
+$sql->db = $_SERVER['sql_db'];
+
+$sql->user_table = $_SERVER['sql_user_table'];
+
+$sql->conn = new mysqli($sql->servername, $sql->user, $sql->pass, $sql->db);
+
+if ($sql->conn->connect_error) {
+	die("Connection failed: ".$sql->conn->connect_errno);
+}
 
 $username = trim($_POST['uname']);
 $password = trim($_POST['pass']);
 
-$errors = array('ui_error' => false, 'pi_error' => false, 'un_error' => false, 'pn_error' => false);
-$has_error = false;
+$_SESSION['errno'] = 0;
 
-if (!preg_match('/^[\w]+$/', $username)) {
-	$errors['ui_error'] = true;
-	$has_error = true;
+
+// CHECK FOR USERNAME VALIDITY
+if (!preg_match('/^[\w]{1,30}$/', $username)) {
+	$_SESSION['errno'] |= intval($_SERVER['ERROR_USERNAME_INVALID']);
 }
 
-if (!preg_match('/^[\w!*@#\$\^]+$/', $password)) {
-	$errors['pi_error'] = true;
-	$has_error = true;
+// CHECK FOR PASSWORD VALIDITY
+if (!preg_match('/^[\w!*@#\$\^]{1,100}$/', $password)) {
+	$_SESSION['errno'] |= intval($_SERVER['ERROR_PASSWORD_INVALID']);
 }
 
-$users = fopen('/srv/file-share/users.txt', 'r');
-$passwords = fopen('/srv/file-share/passwords.txt', 'r');
+$all_users = $sql->conn->query("SELECT username,password FROM $sql->user_table");
 
-$pass_hash = '';
-while (!feof($users) && !feof($passwords)) {
-	if ($username == trim(fgets($users))) {
-		$pass_hash = trim(fgets($passwords));
-		break;
-	}
-	fgets($passwords);
-}
-
-fclose($users);
-fclose($passwords);
-
-if ($pass_hash == '') {
-	$errors['un_error'] = true;
-	$has_error = true;
-}
-else if (hash('sha256', $password) != $pass_hash) {
-	$errors['pn_error'] = true;
-	$has_error = true;
-}
-
-if ($has_error) {
-	$error_string = '';
-
-	foreach ($errors as $name => $status) {
-		if ($status)
-			$error_string .= '&'.$name;
+if (!($_SESSION['errno'] & intval($_SERVER['ERROR_USERNAME_INVALID']))) {
+	$pass_hash = '';
+	while ($row = $all_users->fetch_assoc()) {
+		if ($username == $row['username']) {
+			$pass_hash = $row['password'];
+		}
 	}
 
-	header("Location: login.php?".$error_string.$get_target);
+	if ($pass_hash == '') {
+		$_SESSION['errno'] |= intval($_SERVER['ERROR_USERNAME_DNE']);
+	}
+	else if (hash('sha256', $password) != $pass_hash) {
+		$_SESSION['errno'] |= intval($_SERVER['ERROR_PASSWORD_INCORRECT']);
+	}
+}
+
+if ($_SESSION['errno']) {
+	echo $_SESSION['errno'];
+	echo "$username $password";
+	header("Location: login.php?ayo");
 }
 else {
 	$_SESSION['user'] = $username;
-	header("Location: {$target}");
+
+	$target = '.';
+	if (isset($_SESSION['target'])) {
+		$target = $_SESSION['target'];
+		unset($_SESSION['target']);
+	}
+	var_dump($_SESSION);
+	header("Location: $target");
+	die();
 }
 ?>
