@@ -42,7 +42,7 @@ function list_files($uname) {
 	global $file_home;
 
 	$path = "$file_home/$uname/";
-	$files = array_diff(scandir($path), array('..', '.'));
+	$files = array_diff(scandir($path), array('..', '.', '.htaccess'));
 
 	foreach ($files as $file) {
 		$filesize = format_size(filesize($path.$file));

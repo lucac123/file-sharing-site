@@ -57,6 +57,9 @@ if (!($sql->conn->query($query) === TRUE)) {
 }
 
 mkdir("$file_home/$username");
+$htaccess = fopen("$file_home/$username/.htaccess", "w");
+fwrite($htaccess, "order deny,allow\ndeny from all\n");
+fclose($htaccess);
 
 $target = '.';
 if (isset($_SESSION['target'])) {
@@ -64,52 +67,5 @@ if (isset($_SESSION['target'])) {
 	unset($_SESSION['target']);
 }
 
-header("Location: .");
-
-//$query = "INSERT INTO ".$sql_user_table." (username, password) VALUES ('".$username."','".$password."')";
-//if ($sql_server->query($query) === TRUE) {
-//}
-//else {
-//	echo "Error: " . $query . "<br>" . $sql_server->error;
-//}
-
-
-/*
-$users = fopen('/srv/file-share/users.txt', 'r+');
-$passwords = fopen('/srv/file-share/passwords.txt', 'a');
-
-$user_exists = false;
-while(!feof($users)) {
-	if ($username == trim(fgets($users))) {
-		$errors['ue_error'] = true;
-		$has_error = true;
-	}
-}
-
-if ($has_error) {
-	fclose($users);
-	fclose($passwords);
-
-	$error_string = '';
-
-	foreach ($errors as $name => $status) {
-		if ($status)
-			$error_string .= '&'.$name;
-	}
-
-	header("Location: login.php?signup".$error_string.$get_target);
-}
-else {
-	$_SESSION['user'] = $username;
-
-	fwrite($users, $username."\n");
-	fclose($users);
-
-	fwrite($passwords, hash('sha256', $password)."\n");
-	fclose($passwords);
-
-	mkdir("/srv/file-share/{$username}");
-
-	header("Location: {$target}");
-}*/
+header("Location: welcome.php");
 ?>
